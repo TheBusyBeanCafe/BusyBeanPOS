@@ -2,11 +2,21 @@ body {
 	background-color: lightblue;
 }
 
+
+
+h1 {
+	color: red;
+	text-align: center;
+	font-family: visby;
+	/*font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;*/
+	font-size: 100px;
+}
+
+
 @font-face {
 	font-family: visby;
 	src: url(./fonts/VisbyRoundCF-Bold.woff2)
 }
-
 
 .flex-container {
 	display: flex;
@@ -23,19 +33,28 @@ body {
 }
 
 
-h1 {
-	color: red;
-	text-align: center;
-	font-family: visby;
-	/*font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;*/
-	font-size: 100px;
+
+/* order page stuff */
+
+.order-column {
+	width: 25%;
+	height: 100px;
+	float: left;
 }
 
 .grid-container {
+	margin-left: 25%;
+	height: 100px;
+}
+
+
+.grid-container {
 	display: grid;
-	gap: 50px;
+	grid-template-columns: auto auto auto auto;
+	gap: 50px 50px;
 }
 
 .grid-item {
 	border: 2px solid yellow;
+	text-align: center;
 }
