@@ -2,6 +2,35 @@ body {
 	background-color: lightblue;
 }
 
+html, body {
+	margin: 0;
+}
+
+
+.flex-parent {
+	display: flex;
+	flex-direction: column;
+}
+
+.flex-parent > :not(.flex-scrollable) {
+  flex-shrink: 0;
+}
+
+.flex-parent > .flex-scrollable {
+  flex-grow: 1;
+}
+
+.flex-scrollable {
+	overflow: auto;
+}
+
+#order-column {
+	height: 100vh;
+}
+
+#order-column > * {
+	margin: 2px 16px 2px 16px;
+}
 
 
 h1 {
@@ -36,9 +65,8 @@ h1 {
 
 /* order page stuff */
 
-.order-column {
+#order-column {
 	width: 25%;
-	height: 100px;
 	float: left;
 }
 
