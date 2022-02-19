@@ -1,0 +1,41 @@
+body {
+	background-color: lightblue;
+}
+
+@font-face {
+	font-family: visby;
+	src: url(./fonts/VisbyRoundCF-Bold.woff2)
+}
+
+
+.flex-container {
+	display: flex;
+}
+
+
+.flex-child {
+	flex: 1;
+	border: 2px solid yellow;
+}
+
+.flex-child:first-child {
+	margin-right: 20px;
+}
+
+
+h1 {
+	color: red;
+	text-align: center;
+	font-family: visby;
+	/*font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;*/
+	font-size: 100px;
+}
+
+.grid-container {
+	display: grid;
+	gap: 50px;
+}
+
+.grid-item {
+	border: 2px solid yellow;
+}
