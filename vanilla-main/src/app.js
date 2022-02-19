@@ -17,7 +17,7 @@ function displayData(data) {
 
 		tab += `
 			<div class="grid-item">
-				<button id="button${element.id}" type="button" onclick="orderCoffee(${element})">${element.short_name}</button>
+				<button id="button${element.id}" type="button" onclick="orderCoffee('${element.long_name}')">${element.short_name}</button>
 			</div>
 			`;	 
 	})
@@ -27,30 +27,30 @@ function displayData(data) {
 	document.getElementById("grid-container").innerHTML = tab;
 }
 
-// let orderedCoffees = [];
+let orderedCoffees = [];
 
 getMenuItems(API_URL);
 
 function orderCoffee(item) {
-	console.log(item.long_name);
+	console.log(item);
 
-	// orderedCoffees.push(item.long_name);
+	orderedCoffees.push(item);
 
-	// let display;
+	let display;
 
-	// for (const i in item) {
-	// 	console.log(i);
-	// }
+	for (const i in item) {
+		console.log(i);
+	}
 
-	// orderedCoffees.forEach(function(element) { 
-	// 	console.log(element);
+	orderedCoffees.forEach(function(element) { 
+		console.log(element);
 
-	// 	display += `
-	// 		<p>${element}</p>
-	// 	`;
-	// })
+		display += `
+			<p>${element}</p>
+		`;
+	})
 
-	// document.getElementById("order-list").innerHTML = display;
+	document.getElementById("order-list").innerHTML = display;
 }
 
 
