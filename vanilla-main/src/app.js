@@ -32,7 +32,7 @@ async function getMenuItems(url) {
 
 
 function displayData(data) {
-	let tab;
+	var tab = '';
 	
 	data.forEach(function(element) { 
 		console.log(element.id);
@@ -59,14 +59,9 @@ function orderCoffee(item) {
 
 	orderedCoffees.push(item);
 
-	let display;
-
-	for (const i in item) {
-		console.log(i);
-	}
+	var display = '';
 
 	orderedCoffees.forEach(function(element) { 
-		console.log(element);
 
 		display += `
 			<p>${element}</p>
