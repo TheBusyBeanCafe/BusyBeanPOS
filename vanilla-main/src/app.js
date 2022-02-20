@@ -24,10 +24,13 @@ function newOrder(order) {
 newOrder(demo)
 
 var menu
+var drink_addons
 
 async function getMenuItems(url) {
 	const response = await fetch(url);
-	menu = await response.json();
+	json = await response.json();
+	menu = json["menu"]
+	drink_addons = json["drink_addons"]
 
 	displayData(menu);
 }
@@ -42,7 +45,7 @@ function displayData(data) {
 
 		tab += `
 			<div class="grid-item">
-				<button id="button${index}" type="button" onclick="orderCoffee(${index})">${element.short_name}</button>
+				<button id="button${index}" type="button" onclick="addCoffee(${index})">${element.short_name}</button>
 			</div>
 			`;	 
 	})
@@ -61,6 +64,9 @@ let orderedCoffees = [];
 getMenuItems(API_URL);
 
 function updCurTransList() {
+	document.getElementById("inc-orders-parent").style.display = "none"
+	document.getElementById("cur-trans-parent").style.display = "flex"
+
 	var display = '';
 
 	orderedCoffees.forEach(function(element) { 
@@ -69,7 +75,7 @@ function updCurTransList() {
 		`;
 	})
 
-	document.getElementById("order-list").innerHTML = display;
+	document.getElementById("cur-trans-list").innerHTML = display;
 }
 
 var modal
@@ -82,7 +88,11 @@ window.onclick = function(event) {
   }
 }
 
-function orderCoffee(idx) {
+function pay() {
+	alert("HI")
+}
+
+function addCoffee(idx) {
 	item = menu[idx]
 	console.log(item);
 
@@ -94,9 +104,33 @@ function orderCoffee(idx) {
 			orderedCoffees.push(iidx);
 			updCurTransList()
 		}
+		var options = ""
+		for (const option of drink_addons) {
+			console.log(option)
+
+			options+=`<h3>${option.name}</h3>`
+			switch (option.type) {
+				case "toggle":
+					options+="<input type=\"checkbox\">"
+					break;
+				case "choice":
+					options+="<div>"
+					option.choices.forEach(function(element, index) {
+						options+=`
+						    <input type="radio" id="${option.name}choice${index}"
+								name="${option.name}">
+							<label for="${option.name}choice${index}">${element.name}</label>
+						`
+
+					})
+					options+="</div>"
+					break;
+			}
+		}
 		modal.innerHTML = `
 			<div class="modal-content">
-				${item.long_name}
+				<h2>${item.long_name}</h2>
+				${options}
 				<div class="modal-buttons">
 					<button onclick="modal.style.display = 'none'" type="button">Cancel</button>
 					<button onclick="ok(${idx})" type="button">OK</button>

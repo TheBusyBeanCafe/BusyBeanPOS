@@ -11,13 +11,20 @@
 
 
 		<div class="root-layout">
-			<div id="order-column" class="flex-parent">
-				<!--				<h2>Current transaction</h2>-->
+			<div id="inc-orders-parent" class="flex-parent">
 				<h2>Incoming orders</h2>
 				<div class="flex-scrollable">
-					<div id="order-list" class="order-list"></div>
+					<div></div>
 				</div>
 				<button onclick="location.href='/'" type="button">End shift</button>
+			</div>
+			<div id="cur-trans-parent" class="flex-parent" style="display: none;">
+				<h2>Current transaction</h2>
+				<div class="flex-scrollable">
+					<div id="cur-trans-list"></div>
+				</div>
+				<h3>TOTAL: $420.69</h3>
+				<button onclick="pay()" type="button">PAY</button>
 			</div>
 
 			<div id="grid-container" class="grid-container"></div>
