@@ -23,50 +23,93 @@ function newOrder(order) {
 
 newOrder(demo)
 
+var menu
+
 async function getMenuItems(url) {
 	const response = await fetch(url);
-	var data = await response.json();
+	menu = await response.json();
 
-	displayData(data);
+	displayData(menu);
 }
 
 
 function displayData(data) {
 	var tab = '';
 	
-	data.forEach(function(element) { 
+	data.forEach(function(element, index) { 
 		console.log(element.id);
 		console.log(element.short_name);
 
 		tab += `
 			<div class="grid-item">
-				<button id="button${element.id}" type="button" onclick="orderCoffee('${element.long_name}')">${element.short_name}</button>
+				<button id="button${index}" type="button" onclick="orderCoffee(${index})">${element.short_name}</button>
 			</div>
 			`;	 
 	})
 
 	console.log(tab);
-
-	document.getElementById("grid-container").innerHTML = tab;
+	setFunc = function() { document.getElementById("grid-container").innerHTML = tab; }
+	if ( document.readyState == 'complete' ) {
+		setFunc()
+	} else {
+		addEventListener("load", setFunc)
+	}
 }
 
 let orderedCoffees = [];
 
 getMenuItems(API_URL);
 
-function orderCoffee(item) {
-	console.log(item);
-
-	orderedCoffees.push(item);
-
+function updCurTransList() {
 	var display = '';
 
 	orderedCoffees.forEach(function(element) { 
-
 		display += `
-			<p>${element}</p>
+			<p>${menu[element].long_name}</p>
 		`;
 	})
 
 	document.getElementById("order-list").innerHTML = display;
 }
+
+var modal
+
+window.addEventListener("load", function(){ modal = document.getElementById("drink-options-modal") })
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+function orderCoffee(idx) {
+	item = menu[idx]
+	console.log(item);
+
+	console.log(item)
+	if (item.is_drink) {
+		modal.style.display = "block"
+		ok = function(iidx) {
+			modal.style.display = 'none'
+			orderedCoffees.push(iidx);
+			updCurTransList()
+		}
+		modal.innerHTML = `
+			<div class="modal-content">
+				${item.long_name}
+				<div class="modal-buttons">
+					<button onclick="modal.style.display = 'none'" type="button">Cancel</button>
+					<button onclick="ok(${idx})" type="button">OK</button>
+				</div>
+			</div>
+		`
+	} else {
+		orderedCoffees.push(idx);
+		updCurTransList()
+	}
+
+}
+
+
+
+

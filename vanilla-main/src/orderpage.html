@@ -1,109 +1,23 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script type="text/javascript" src="app.js"></script>
 		<link rel="stylesheet" href="style.css">
-
+		<script type="text/javascript" src="app.js"></script>
 	</head>
 
 	<body>
+		<div id="drink-options-modal" class="modal">
+		</div>
+
+
 		<div class="root-layout">
-			<!-- toDO fix merge later -->
-			<div id="order-list" class="order-list"></div>
 			<div id="order-column" class="flex-parent">
 				<!--				<h2>Current transaction</h2>-->
 				<h2>Incoming orders</h2>
 				<div class="flex-scrollable">
-					<table id="orders-table">
-						<tbody id="orders-table-body">
-							<tr>
-								<td>1</td>
-								<td>yes</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>yes</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>yes</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>yes</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>yes</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>yes</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>yes</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>yes</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>yes</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>yes</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>yes</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>yes</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>yes</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>yes</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>yes</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>yes</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>yes</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>yes</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>yes</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>yes</td>
-							</tr>
-							<tr>
-								<td>1</td>
-								<td>yes</td>
-							</tr>
-						</tbody>
-					</table>
+					<div id="order-list" class="order-list"></div>
 				</div>
-				<button onclick="location.href='./orderpage.html'" type="button">Start shift</button>
+				<button onclick="location.href='/'" type="button">End shift</button>
 			</div>
 
 			<div id="grid-container" class="grid-container"></div>
