@@ -17,9 +17,54 @@ demo = {
 	]
 }
 
+
+
+function getCurrentDate() {
+	var currentDate = new Date();
+	var date = currentDate.getHours();
+
+	if (date > 7 && date < 9) {
+		return "Good Morning, "
+	} else if (date > 12 && date < 2) {
+		return "Good Afternoon, "
+	} else {
+		return "Hello!"
+	}
+}
+
+function getCurrentName() {
+	data = asyncFetch(API_URL + "shift");
+	console.log(data);
+}
+
+
+async function asyncFetch(url) {
+	const response = await fetch(url);
+	json = await response.json()
+
+	return json
+}
+
+
+
+function getIntroText() {
+	var introText = "";
+	introText += getCurrentDate()
+
+	getCurrentName();
+}
+
+
+window.addEventListener("load", getCurrentDate);
+
+
 function newOrder(order) {
 	
 }
+
+
+
+
 
 newOrder(demo)
 
