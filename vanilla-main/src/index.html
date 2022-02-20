@@ -6,29 +6,31 @@
 
   <link rel="stylesheet" href="style.css">
 
-  <title>Page Title</title>
+  <title>Busy Bean Cafe</title>
+
+  <script type="text/javascript" src="index-script.js"></script>
 </head>
 
 
 
 <body>
-	<h1>HEADING</h1>
+	<div id="main-heading" class="main-heading">
+	</div>
 
-	<div class="flex-container">
+	
+	<div class="float-container">
 
-		<div class="flex-child">
-			<div class="stats">
-				<button type="button">stats</button>
-			</div>
+		<div class="stats-rectangle">
+			<p class="stats-text">View Stats</p>
 		</div>
 
-		<div class="flex-child">
-			<div class="startshift">
-				<button onclick="location.href='./orderpage.html'" type="button">Start shift</button>
-			</div>
+		<div id = "shift-rectangle" class="shift-rectangle">
+			<p id="shift-heading" class="shift-heading">Start Shift</p>
+			<p id="shift-sub" class="shift-sub"></p>
 		</div>
 
 	</div>
+
 
 </body>
 

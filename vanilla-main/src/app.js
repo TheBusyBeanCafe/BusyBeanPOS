@@ -1,4 +1,5 @@
-const API_URL = "http://127.0.0.1:5000/menu";
+const API_MENU_URL = "http://127.0.0.1:5000/menu";
+const API_SHIFT_URL = "http://127.0.0.1:5000/shifts";
 
 demo = {
 	"to": "Staffroom",
@@ -17,9 +18,54 @@ demo = {
 	]
 }
 
+
+
+function getCurrentDate() {
+	var currentDate = new Date();
+	var date = currentDate.getHours();
+
+	if (date > 7 && date < 9) {
+		return "Good Morning, "
+	} else if (date > 12 && date < 2) {
+		return "Good Afternoon, "
+	} else {
+		return "Hello!"
+	}
+}
+
+function getCurrentName() {
+	data = asyncFetch(API_SHIFT_URL);
+	console.log(data);
+}
+
+
+async function asyncFetch(url) {
+	const response = await fetch(url);
+	json = await response.json()
+
+	return json
+}
+
+
+
+function getIntroText() {
+	var introText = "";
+	introText += getCurrentDate()
+
+	getCurrentName();
+}
+
+
+window.addEventListener("load", getCurrentDate);
+
+
 function newOrder(order) {
 	
 }
+
+
+
+
 
 newOrder(demo)
 
@@ -61,7 +107,7 @@ function displayData(data) {
 
 let orderedCoffees = [];
 
-getMenuItems(API_URL);
+getMenuItems(API_MENU_URL);
 
 function updCurTransList() {
 	document.getElementById("inc-orders-parent").style.display = "none"
