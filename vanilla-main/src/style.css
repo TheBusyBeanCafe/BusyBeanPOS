@@ -20,6 +20,7 @@ h1 {
 
 
 .stats-text {
+	margin: 0px;
 	position: relative;
 	text-align: center;
 	top: 40%;
@@ -28,19 +29,21 @@ h1 {
 }
 
 .shift-heading {
+	margin: 0px;
 	position: relative;
 	text-align: left;
 	padding-left: 30px;
-	top: 38%;
+	top: 40%;
 	font-size: 4.4vw;
 	font-family: visbyround-medium;
 }
 
 .shift-sub {
+	margin: 0px;
 	position: relative;
 	text-align: left;
 	padding-left: 30px;
-	top: 25%;
+	top: 40%;
 	font-size: 2vw;
 	font-family: visbyround-medium;
 	color: #777;
@@ -50,7 +53,7 @@ h1 {
 .stats-rectangle {
 	margin-left: 5vw;
 	margin-top: 3vh;
-	width: 25vw;
+	width: 26vw;
 	height: 52vh;
 	border-radius: 18px;
 	background-color: #F3F3F3;
@@ -60,7 +63,7 @@ h1 {
 .shift-rectangle {
 	margin-right: 5vw;
 	margin-top: 3vh;
-	width: 60vw;
+	width: 61vw;
 	height: 52vh;
 	border-radius: 18px;
 	background-image: url("./images/coffee.png");
@@ -68,15 +71,22 @@ h1 {
 	box-shadow: 0px 4px 32px rgba(0, 0, 0, 0.15);
 }
 
+.arrow {
+	margin: 0px;
+	position: absolute;
+
+	right: 6vw;
+	top: 50%;
+}
 
 
 .stats-rectangle {
-	width: 25%;
+	width: 26%;
 	float: left;
 }
 
 .shift-rectangle {
-	width: 60%;
+	width: 61%;
 	float: right;
 }
 
