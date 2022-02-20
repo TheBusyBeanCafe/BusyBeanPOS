@@ -106,17 +106,14 @@ let orderedCoffees = [];
 getMenuItems(API_URL + "menu");
 
 function updCurTransList() {
-	document.getElementById("inc-orders-parent").style.display = "none"
-	document.getElementById("cur-trans-parent").style.display = "flex"
-
 	var display = '';
-	var total = 0;
+	//var total = 0;
 
 	orderedCoffees.forEach(function(element) { 
 		display += `
 			<p>${menu[element.index].long_name}</p>
 		`;
-
+		/*
 		subtotal = menu[element.index].price
 		if (menu[element.index].is_drink) {
 			if (element.large) {
@@ -138,10 +135,11 @@ function updCurTransList() {
 			})
 		}
 		total += (subtotal * element.count)
+		*/
 	})
 
-	document.getElementById("cur-trans-list").innerHTML = display;
-	document.getElementById("total").innerHTML = total;
+	document.getElementById("order-list").innerHTML = display;
+	//document.getElementById("total").innerHTML = total;
 }
 
 var modal
@@ -153,7 +151,7 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-
+/*
 function pay() {
 	console.log(orderedCoffees)
 	fetch(API_URL + "transactions", {
@@ -161,13 +159,10 @@ function pay() {
 		headers: {'Content-Type': 'application/json'},
 		body: JSON.stringify(orderedCoffees)
 	})
-	document.getElementById("inc-orders-parent").style.display = "flex"
-	document.getElementById("cur-trans-parent").style.display = "none"
 
 	orderedCoffees = []
-	document.getElementById("cur-trans-list").innerHTML = '';
 }
-
+*/
 function addCoffee(idx) {
 	item = menu[idx]
 	if (item.is_drink) {
