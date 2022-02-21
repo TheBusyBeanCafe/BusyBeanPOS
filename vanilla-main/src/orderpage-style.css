@@ -1,0 +1,104 @@
+body {
+	background-color: #EBEBEB;
+}
+
+.grid-container {
+	
+}
+
+.grid-container {
+	margin-left: 33.5%;
+	margin-right: 1.5vw;
+	height: 100px;
+
+	display: grid;
+	grid-template-columns: [first] 2fr [line2] 1fr [line3] 1fr [line4] 2fr;
+	gap: 1vw;
+}
+
+.grid-item {
+	border: 2px solid yellow;
+	text-align: center;
+}
+
+
+.flex-parent {
+	display: flex;
+	flex-direction: column;
+	padding: 1vw;
+	background-color: #DFC6A9;
+	height: 97vh; /* FIX THIS : TODO DISACCOUNT FOR WINDOW TAB BAR?*/
+	width: 30%;
+	float: left;
+	border-radius: 0px 1.2vw 1.2vw 0px; 
+}
+
+.flex-parent > :not(.flex-scrollable) {
+  flex-shrink: 0;
+}
+
+.flex-parent > .flex-scrollable {
+  flex-grow: 1;
+}
+
+.flex-scrollable {
+	overflow: auto;
+}
+
+
+
+.order-heading {
+	font-size: 4.5vw;
+	font-family: visbyround-medium;
+	margin-bottom: 0;
+	margin-top: 4vh;
+	padding-bottom: 0;
+}
+
+.order-sub {
+	margin: 0;
+	margin-top: -1vh;
+	margin-bottom: 0.8vh;
+	padding: 0;
+	text-align: left;
+	font-size: 1.8vw;
+	font-family: visbyround-medium;
+	color: #777;
+}
+
+.order-list {
+	font-size: 2vw;
+	font-family: 'Roboto Mono';
+	border: 0px;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+
+
+.modal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	padding-top: 100px;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%;
+}
+
+.modal-buttons {
+	float: right;
+}
+

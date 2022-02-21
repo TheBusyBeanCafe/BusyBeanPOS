@@ -3,6 +3,9 @@
 	<head>
 		<link rel="stylesheet" href="style.css">
 		<script type="text/javascript" src="app.js"></script>
+		<link rel="stylesheet" href="orderpage-style.css">
+		<link href='https://fonts.googleapis.com/css?family=Roboto Mono' rel='stylesheet'>
+		<title>Order Page</title>
 	</head>
 
 	<body>
@@ -12,12 +15,14 @@
 
 		<div class="root-layout">
 			<div id="orders" class="flex-parent">
-				<h2>Orders</h2>
+				<h2 class="order-heading">Orders</h2>
+				<p id="order-sub" class="order-sub">Friday Lunch Shift TODO FIX</p>
 				<div class="flex-scrollable">
-					<div id="order-list"></div>
+					<div id="order-list" class="order-list"></div>
 				</div>
 				<button onclick="location.href='/'" type="button">End shift</button>
 			</div>
+
 			<div id="grid-container" class="grid-container"></div>
 		</div>
 

@@ -111,7 +111,7 @@ function updCurTransList() {
 
 	orderedCoffees.forEach(function(element) { 
 		display += `
-			<p>${menu[element.index].long_name}</p>
+			<p id="order${element.index}" class="order${element.index}" style="background: white; border-radius: 0.4vw; padding: 0.4vw;"><span style="font-weight: 900; margin-left: 0.5vw; margin-right: 1.4vw;">${(element.large) ? "L" : "R"}</span>${menu[element.index].long_name}</p>
 		`;
 		/*
 		subtotal = menu[element.index].price
@@ -151,18 +151,22 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-/*
-function pay() {
-	console.log(orderedCoffees)
+
+
+
+
+function postCoffee(coffee) {
+	console.log(coffee)
 	fetch(API_URL + "transactions", {
 		method: "POST",
 		headers: {'Content-Type': 'application/json'},
-		body: JSON.stringify(orderedCoffees)
+		body: JSON.stringify(coffee)
 	})
-
-	orderedCoffees = []
 }
-*/
+
+
+
+
 function addCoffee(idx) {
 	item = menu[idx]
 	if (item.is_drink) {
@@ -170,6 +174,8 @@ function addCoffee(idx) {
 		ok = function(iidx) {
 			modal.style.display = 'none'
 			object = {
+				
+
 				index: iidx,
 				addons: [],
 				large: document.getElementById("large").checked,
@@ -199,6 +205,8 @@ function addCoffee(idx) {
 
 				}
 			})
+			postCoffee(object);
+
 			orderedCoffees.push(object);
 			updCurTransList()
 		}
@@ -243,6 +251,8 @@ function addCoffee(idx) {
 			</div>
 		`
 	} else {
+		pushCoffee(item);
+
 		orderedCoffees.push({index: idx});
 		updCurTransList()
 	}
