@@ -57,97 +57,156 @@ function postCoffee(coffee) {
 	})
 }
 
-function addCoffee(idx) {
+// function addCoffee(idx) {
+// 	item = menu[idx]
+// 	if (item.is_drink) {
+// 		modal.style.display = "block"
+// 		ok = function(iidx) {
+// 			modal.style.display = 'none'
+// 			object = {
+				
+				
+// 				index: iidx,
+// 				addons: [],
+// 				large: document.getElementById("large").checked,
+// 				count: 1 // TODO
+// 			}
+// 			drink_addons.forEach(function(element, index) {
+// 				switch (element.type) {
+// 					case "toggle":
+// 					object.addons[index] = document.getElementById(element.name).checked
+// 					break;
+// 					case "choice":
+// 					var choice
+// 					[].slice.call(document.getElementById(element.name).getElementsByTagName("input")).every( (el, idx) => {
+// 						if (el.checked) {
+// 							choice = idx
+// 							return false
+// 						}
+// 						return true
+// 					})
+// 					object.addons[index] = choice
+// 					break;
+// 					case "count":
+// 					object.addons[index] = []
+// 					for (idx in element.choices) {
+// 						object.addons[index][idx] = document.getElementById(`${element.name}choice${idx}`).valueAsNumber
+// 					}
+					
+// 				}
+// 			})
+// 			postCoffee(object);
+			
+// 			orderedCoffees.push(object);
+// 			updCurTransList()
+// 		}
+// 		var options = ""
+// 		options+="<h3>Large</h3>"
+// 		options+="<input id=\"large\" type=\"checkbox\">"
+// 		for (const option of drink_addons) {
+			
+// 			options+=`<h3>${option.name}</h3>`
+// 			switch (option.type) {
+// 				case "toggle":
+// 				options+=`<input id="${option.name}" type=\"checkbox\">`
+// 				break;
+// 				case "choice":
+// 				options+=`<div id="${option.name}">`
+// 				option.choices.forEach(function(element, index) {
+// 					options+=`
+// 					<input type="radio" id="${option.name}choice${index}"
+// 					name="${option.name}" ${index === option.default ? "checked" : ""}>
+// 					<label for="${option.name}choice${index}">${element.name}</label>
+// 					`
+// 				})
+// 				options+="</div>"
+// 				break;
+// 				case "count":
+// 				option.choices.forEach(function(element, index) {
+// 					options+=`
+// 					<input type="number" value="0" id="${option.name}choice${index}">
+// 					<label for="${option.name}choice${index}">${element.name}</label>
+// 					`
+// 				})
+// 			}
+// 		}
+// 		modal.innerHTML = `
+// 		<div class="modal-content">
+// 		<h2>${item.long_name}</h2>
+// 		${options}
+// 		<div class="modal-buttons">
+// 		<button onclick="modal.style.display = 'none'" type="button">Cancel</button>
+// 		<button onclick="ok(${idx})" type="button">OK</button>
+// 		</div>
+// 		</div>
+// 		`
+// 	} else {
+// 		pushCoffee(item);
+		
+// 		orderedCoffees.push({index: idx});
+// 		updCurTransList()
+// 	}
+	
+// }
+
+
+function diagButtonClick(elem) {
+	var type = elem.getAttribute("data-button-group");
+	[].slice.call(document.getElementById("drink-options-content")
+		.querySelectorAll("[data-button-group='" + type + "'].dialog-button-selected")).forEach(function(element) {
+			element.classList.remove("dialog-button-selected")
+		})
+	elem.classList.add("dialog-button-selected")
+}
+
+
+
+
+var displayedDialogIdx;
+
+
+function doneclicked() {
+	modal.style.display = 'none'
+	object = {
+		index: displayedDialogIdx,
+		large: true,
+		count: 1 // TODO also do post
+	}
+	var choice
+	[].slice.call(document.getElementById("drink-options-content")
+		.querySelectorAll("[data-button-group='milk']"))
+		.every( (el, idx) => {
+			if (el.classList.contains("dialog-button-selected")) {
+				choice = idx
+				return false
+			}
+			return true
+		}
+	)
+	object["milk"] = choice
+	console.log(object)
+	fetch(API_URL + "transactions", {
+		method: "POST",
+		headers: {'Content-Type': 'application/json'},
+		body: JSON.stringify(object)
+	})
+	orderedCoffees.push(object);
+	updCurTransList()
+}
+
+
+
+function coffeeClicked(idx) {
 	item = menu[idx]
 	if (item.is_drink) {
 		modal.style.display = "block"
-		ok = function(iidx) {
-			modal.style.display = 'none'
-			object = {
-				
-				
-				index: iidx,
-				addons: [],
-				large: document.getElementById("large").checked,
-				count: 1 // TODO
-			}
-			drink_addons.forEach(function(element, index) {
-				switch (element.type) {
-					case "toggle":
-					object.addons[index] = document.getElementById(element.name).checked
-					break;
-					case "choice":
-					var choice
-					[].slice.call(document.getElementById(element.name).getElementsByTagName("input")).every( (el, idx) => {
-						if (el.checked) {
-							choice = idx
-							return false
-						}
-						return true
-					})
-					object.addons[index] = choice
-					break;
-					case "count":
-					object.addons[index] = []
-					for (idx in element.choices) {
-						object.addons[index][idx] = document.getElementById(`${element.name}choice${idx}`).valueAsNumber
-					}
-					
-				}
-			})
-			postCoffee(object);
-			
-			orderedCoffees.push(object);
-			updCurTransList()
-		}
-		var options = ""
-		options+="<h3>Large</h3>"
-		options+="<input id=\"large\" type=\"checkbox\">"
-		for (const option of drink_addons) {
-			
-			options+=`<h3>${option.name}</h3>`
-			switch (option.type) {
-				case "toggle":
-				options+=`<input id="${option.name}" type=\"checkbox\">`
-				break;
-				case "choice":
-				options+=`<div id="${option.name}">`
-				option.choices.forEach(function(element, index) {
-					options+=`
-					<input type="radio" id="${option.name}choice${index}"
-					name="${option.name}" ${index === option.default ? "checked" : ""}>
-					<label for="${option.name}choice${index}">${element.name}</label>
-					`
-				})
-				options+="</div>"
-				break;
-				case "count":
-				option.choices.forEach(function(element, index) {
-					options+=`
-					<input type="number" value="0" id="${option.name}choice${index}">
-					<label for="${option.name}choice${index}">${element.name}</label>
-					`
-				})
-			}
-		}
-		modal.innerHTML = `
-		<div class="modal-content">
-		<h2>${item.long_name}</h2>
-		${options}
-		<div class="modal-buttons">
-		<button onclick="modal.style.display = 'none'" type="button">Cancel</button>
-		<button onclick="ok(${idx})" type="button">OK</button>
-		</div>
-		</div>
-		`
-	} else {
-		pushCoffee(item);
-		
+		displayedDialogIdx = idx
+    } else {
 		orderedCoffees.push({index: idx});
 		updCurTransList()
 	}
-	
 }
+
 
 function getCurrentDate() {
 	var currentDate = new Date();
@@ -202,7 +261,7 @@ function displayData(data) {
 				
 				coffeeButton.style.cursor = 'pointer';
 				coffeeButton.onclick = function () {
-					addCoffee(i)
+					coffeeClicked(i)
 				}
 			}
 		}
@@ -260,37 +319,15 @@ function updCurTransList() {
 		display += `
 		<p id="order${element.index}" class="order${element.index}" style="background: white; border-radius: 0.4vw; padding: 0.4vw; margin-top: 0.8vw; margin-bottom: 0.8vw;"><span style="font-weight: 900; margin-left: 0.5vw; margin-right: 1.4vw;">${(element.large) ? "L" : "R"}</span>${menu[element.index].long_name}</p>
 		`;
-		/*
-		subtotal = menu[element.index].price
-		if (menu[element.index].is_drink) {
-			if (element.large) {
-				subtotal += 0.5
-			}
-			element.addons.forEach(function(el, index) {
-				addon = drink_addons[index]
-				switch (addon.type) {
-					case "choice":
-					subtotal += addon.choices[el].cost
-					break;
-					case "count":
-					console.log(addon)
-					el.forEach(function(count, idx) {
-						subtotal += (count * addon.choices[idx].cost)
-					})
-					break;
-				}
-			})
-		}
-		total += (subtotal * element.count)
-		*/
-	})
+	});
 	
 	document.getElementById("order-list").innerHTML = display;
-	//document.getElementById("total").innerHTML = total;
 }
 
 function endShift() {
 	document.getElementById("endshift-button").addEventListener("click", () => {
+		
+
 		document.getElementById("endshift-button").style.display = "none";
 		document.getElementById("preorders-button").style.display = "none";
 
@@ -322,6 +359,14 @@ window.addEventListener("load", () => {
 	getCurrentDate();
 	modal = document.getElementById("drink-options-modal");
 	document.getElementById("order-sub").innerHTML = getOrderSubText();
+	
+	
+
+	let buttons = document.getElementsByClassName("bar-button")
+	for (button of buttons) {
+		button.style.cursor = "pointer";
+	}
+
 	endShift();
 
 	confirmCancelEnd();
