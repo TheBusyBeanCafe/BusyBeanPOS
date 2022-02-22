@@ -83,7 +83,7 @@ function updCurTransList() {
 
 	orderedCoffees.forEach(function(element) { 
 		display += `
-			<p>${menu[element.index].long_name}</p>
+			<p id="order${element.index}" class="order${element.index}" style="background: white; border-radius: 0.4vw; padding: 0.4vw;"><span style="font-weight: 900; margin-left: 0.5vw; margin-right: 1.4vw;">${(element.large) ? "L" : "R"}</span>${menu[element.index].long_name}</p>
 		`;
 	})
 
@@ -100,18 +100,8 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-/*
-function pay() {
-	console.log(orderedCoffees)
-	fetch(API_URL + "transactions", {
-		method: "POST",
-		headers: {'Content-Type': 'application/json'},
-		body: JSON.stringify(orderedCoffees)
-	})
 
-	orderedCoffees = []
-}
-*/
+
 
 
 function diagButtonClick(elem) {
@@ -122,7 +112,6 @@ function diagButtonClick(elem) {
 		})
 	elem.classList.add("dialog-button-selected")
 }
-
 
 
 
@@ -168,6 +157,11 @@ function coffeeClicked(idx) {
 	if (item.is_drink) {
 		modal.style.display = "block"
 		displayedDialogIdx = idx
+=======
+function addCoffee(idx) {
+	item = menu[idx]
+	if (item.is_drink) {
+		modal.style.display = "block"
 	} else {
 		orderedCoffees.push({index: idx});
 		updCurTransList()
