@@ -82,20 +82,27 @@ async function getMenuItems(url) {
 
 
 function displayData(data) {
-	var tab = '';
-	
-	data.forEach(function(element, index) { 
-
-		tab += `
-			<div class="grid-item">
-				<button id="button${index}" type="button" onclick="addCoffee(${index})">${element.short_name}</button>
-			</div>
-			`;	 
-	})
-
-	setFunc = function() { document.getElementById("grid-container").innerHTML = tab; }
 	if ( document.readyState == 'complete' ) {
-		setFunc()
+		data.forEach(function(element, index) { 
+			let itemName = "hstack-item" + index;
+
+			console.log(itemName);
+			
+			if (index > 1 && index != 8) {
+				document.getElementById(itemName).innerHTML = `
+				<p class="button-title-small">${element.short_name}</p>
+				<p class="button-sub-small">${element.long_name}</p>
+			`
+			} else {
+				document.getElementById(itemName).innerHTML = `
+				<p class="button-title-big">${element.short_name}</p>
+				<p class="button-sub-big">${element.long_name}</p>
+			`
+			}
+		})
+
+
+		// onclick="addCoffee(${index})"
 	} else {
 		addEventListener("load", setFunc)
 	}
@@ -111,7 +118,7 @@ function updCurTransList() {
 
 	orderedCoffees.forEach(function(element) { 
 		display += `
-			<p id="order${element.index}" class="order${element.index}" style="background: white; border-radius: 0.4vw; padding: 0.4vw;"><span style="font-weight: 900; margin-left: 0.5vw; margin-right: 1.4vw;">${(element.large) ? "L" : "R"}</span>${menu[element.index].long_name}</p>
+			<p id="order${element.index}" class="order${element.index}" style="background: white; border-radius: 0.4vw; padding: 0.4vw; margin-top: 0.8vw; margin-bottom: 0.8vw;"><span style="font-weight: 900; margin-left: 0.5vw; margin-right: 1.4vw;">${(element.large) ? "L" : "R"}</span>${menu[element.index].long_name}</p>
 		`;
 		/*
 		subtotal = menu[element.index].price

@@ -16,10 +16,11 @@ async function getIntroText(url) {
 	var day = currentDate.getDay();
 
 
-	var day = 5;
-	var hour = 13;
+	day = 4;
+	hour = 8;
 
-
+	console.log(hour);
+	console.log(day);
 
 	const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 	var weekday = weekdays[day]
