@@ -3,52 +3,57 @@ body {
 }
 
 .rootvstack {
-	margin-left: 32.5%;
-	margin-right: 0.5vw;
-
-	padding-top: 0.5vh;
-	padding-bottom: 0.5vh;
-	
+	margin-left: 32%;
 	height: 97vh;
+
+	padding-top: 1vh;
+	padding-bottom: 1vh;
+	padding-left: 1vh;
 }
+
+
+.hstack1 {
+	display: flex;
+	flex: 1;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	height: 34vh;
+	justify-content: space-evenly;
+
+	padding-right: 1vh;
+
+	gap: 1vh;
+
+	padding-bottom: 1vh;
+}
+
+
+
+.hstack2 {
+	display: flex;
+	flex: 1;
+	flex-direction: row;
+	justify-content: space-evenly;
+	
+	height: 66vh;
+}
+
 
 
 
 .vstack {
 	display: flex;
 	flex: 1;
+	flex-wrap: nowrap;
 	flex-direction: column;
+
+	padding-right: 1vh;
+
+	justify-content: space-evenly;
 	
-	margin-top: 0.5vh;
-	margin-bottom: 0.5vh;
 
 	height: 66vh;
-}
-
-
-.hstack1 {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
 	
-	height: 34vh;
-
-	justify-content: space-evenly;
-
-	margin-bottom: 0.5vh;
-	flex: 1;
-}
-
-
-.hstack2 {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: space-evenly;
-
-	
-	margin-top: 1vh;
-	flex: 1;
 }
 
 
@@ -57,14 +62,14 @@ body {
 	background: white;
 	border-radius: 0.6vw;
 
-	margin-left: 0.5vh;
-	margin-right: 0.5vh;
-
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 
+	margin-bottom: 1vh;
+
+	height: 100%;
 	width: 100%;
 }
 
@@ -81,7 +86,6 @@ body {
 	margin: 0px;
 
 	margin-bottom: -5px;
-	
 }
 
 .button-sub-big {
