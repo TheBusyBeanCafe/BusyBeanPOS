@@ -16,12 +16,27 @@
 		<div class="root-layout">
 			<div id="orders" class="flex-parent">
 				<h2 class="order-heading">Orders</h2>
-				<p id="order-sub" class="order-sub">Friday Lunch Shift TODO FIX</p>
+				<p id="order-sub" class="order-sub"></p>
 				<div class="flex-scrollable">
 					<div id="order-list" class="order-list"></div>
 				</div>
-				<button onclick="location.href='/'" type="button">End shift</button>
-			</div>
+
+				<div id="bar-hstack" class="bar-hstack">
+					<button id="preorders-button" class="bar-button" type="button">View Pre-Orders</button>
+
+					<button id="endshift-button" class="bar-button" type="button">End Shift</button>
+
+
+
+					<button id="cancel-endshift-button" class="bar-button" style="display: none;">Cancel</button> 
+
+					<button id="confirm-endshift-button" class="bar-button" style="display: none;">Confirm End Shift</button> 
+
+
+				</div>
+
+
+			</div> 
 
 
 			<div id="rootvstack" class="rootvstack">
