@@ -2,43 +2,31 @@ body {
 	background-color: #EBEBEB;
 }
 
-.grid-container {
-	
-}
-
-.grid-container {
-	margin-left: 33.5%;
-	margin-right: 1.5vw;
-	height: 100px;
-
-	display: grid;
-	grid-template-columns: [first] 2fr [line2] 1fr [line3] 1fr [line4] 2fr;
-	gap: 1vw;
-}
-
-.grid-item {
-	border: 2px solid yellow;
-	text-align: center;
+.root-layout {
+	margin: 0px;
+	max-height: 100vh;
 }
 
 
+/* LEFT BAR */
 .flex-parent {
 	display: flex;
 	flex-direction: column;
 	padding: 1vw;
 	background-color: #DFC6A9;
-	height: 97vh; /* FIX THIS : TODO DISACCOUNT FOR WINDOW TAB BAR?*/
+	height: calc(100vh - 2vw); /* FIX THIS : TODO DISACCOUNT FOR WINDOW TAB BAR?*/
 	width: 30%;
 	float: left;
+	border: 0px;
 	border-radius: 0px 1.2vw 1.2vw 0px; 
 }
 
 .flex-parent > :not(.flex-scrollable) {
-  flex-shrink: 0;
+	flex-shrink: 0;
 }
 
 .flex-parent > .flex-scrollable {
-  flex-grow: 1;
+	flex-grow: 1;
 }
 
 .flex-scrollable {
@@ -49,7 +37,7 @@ body {
 
 .order-heading {
 	font-size: 4.5vw;
-	font-family: visbyround-medium;
+	font-family: visbyround-regular;
 	margin-bottom: 0;
 	margin-top: 4vh;
 	padding-bottom: 0;
@@ -75,13 +63,198 @@ body {
 }
 
 
+/* LEFT BAR BOTTOM BUTTONS */
+.bar-hstack {
+	display: flex;
+	flex-direction: row;
+
+	gap: 0.5vw;
+
+	width: 100%;
+}
+
+.bar-button {
+	font-size: 1.75vw;
+	font-family: visbyround-medium;
+	border: 0px;
+	padding-top: 0.65vh;
+	padding-bottom: 0.65vh;
+	border-radius: 0.4vw;
+}
+
+#endshift-button {
+	flex-grow: 1;
+	background: #FF867C;
+}
+
+#preorders-button {
+	flex-grow: 4;
+	background: #FFF7D9;
+}
+
+#confirm-endshift-button {
+	flex-grow: 3;
+	background: #FF867C;
+}
+
+#cancel-endshift-button {
+	flex-grow: 1;
+}
 
 
-.modal {
+
+
+
+
+
+
+
+
+
+
+
+/* ORDER BUTTONS */
+
+
+
+
+
+
+
+
+.rootvstack {
+	margin-left: 32%;
+	height: calc(97vh - 5*(1vh));
+	
+	padding-top: 1.4vh;
+	padding-bottom: 1.4vh;
+	padding-left: 1.4vh;
+}
+
+
+.hstack1 {
+	display: flex;
+	flex: 1;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	height: calc(34vh - 2*(1.4vh));
+	justify-content: space-evenly;
+	
+	padding-right: 1.4vh;
+	
+	gap: 1.4vh;
+	
+	padding-bottom: 1.4vh;
+}
+
+
+
+.hstack2 {
+	display: flex;
+	flex: 1;
+	flex-direction: row;
+	justify-content: space-evenly;
+	
+	height: 66vh;
+}
+
+
+
+
+.vstack {
+	display: flex;
+	flex: 1;
+	flex-wrap: nowrap;
+	flex-direction: column;
+	
+	padding-right: 1.4vh;
+	
+	justify-content: space-evenly;
+	
+	
+	height: 66vh;
+	
+}
+
+
+
+.hstack-item {
+	background: white;
+	border-radius: 0.6vw;
+	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	
+	margin-bottom: 1.4vh;
+	
+	height: 100%;
+	width: 100%;
+}
+
+
+
+
+.button-title-big {
+	font-size: 7vw;
+	font-family: 'Roboto Mono';
+	font-weight: 700;
+	
+	
+	padding: 0px;
+	margin: 0px;
+	
+	margin-bottom: -0.8vh;
+}
+
+.button-sub-big {
+	font-size: 3.5vw;
+	font-family: 'Roboto Mono';
+	font-weight: 500;
+	
+	padding: 0px;
+	margin: 0px;
+	
+	margin-top: -0.8vh;
+}
+
+
+
+.button-title-small {
+	font-size: 5vw;
+	font-family: 'Roboto Mono';
+	font-weight: 700;
+	
+	
+	padding: 0px;
+	margin: 0px;
+	
+	margin-bottom: -0.8vh;
+	
+}
+
+.button-sub-small {
+	font-size: 2.5vw;
+	font-family: 'Roboto Mono';
+	font-weight: 500;
+	
+	padding: 0px;
+	margin: 0px;
+	
+	margin-top: -0.8vh;
+}
+
+
+/* MODAL */
+
+.modal-bg {
 	display: none;
+	justify-content: center;
+	align-items: center;
+
 	position: fixed;
 	z-index: 1;
-	padding-top: 100px;
 	left: 0;
 	top: 0;
 	width: 100%;
@@ -92,13 +265,67 @@ body {
 
 .modal-content {
 	background-color: #fefefe;
-	margin: auto;
-	padding: 20px;
-	border: 1px solid #888;
-	width: 80%;
+	
+	padding: 2vw;
+
+	width: 85vw;
+	height: 80vh;
 }
 
-.modal-buttons {
-	float: right;
+
+.dialog-title {
+	font-family: visbyround-bold;
+	font-size: 2em;
+	vertical-align: bottom;
 }
+
+
+.dialog-drink-title {
+	font-family: "Roboto Mono";
+	font-weight: 600;
+	font-size: 1.5em;
+	vertical-align: bottom;
+	text-align: right;
+}
+
+
+#temp {
+	padding: 16px;
+}
+
+
+.dialog-button {
+	font-family: "Roboto Mono";
+	border-radius: 4px;
+	border: none;
+	transition: transform 0.05s;
+}
+
+.dialog-button:active {
+	transform: scale(0.9);
+}
+
+.dialog-button-selected {
+	background-color: #ffecb3;
+}
+
+.button-short-name {
+	font-weight: 700;
+	font-size: 3em;
+	margin: 4px;
+}
+
+.button-long-name {
+	font-size: 1.2em;
+	margin: 0px;
+}
+
+.button-short-name + .button-long-name {
+	margin-top: -8px;
+}
+
+.dialog-subtitle {
+	font-family: visbyround-regular;
+}
+
 

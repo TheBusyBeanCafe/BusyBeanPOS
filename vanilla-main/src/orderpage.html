@@ -21,7 +21,7 @@
 						</td>
 					</tr>
 				</table>
-				<button type="button" class="dialog-button dialog-button-selected" data-button-group="size" onclick="diagButtonClick(this)">
+				<button type="button" class="dialog-button dialog-button-selected" data-button-default="true" data-button-group="size" onclick="diagButtonClick(this)">
 					<h2 class="button-short-name">
 						R
 					</h2>
@@ -51,7 +51,7 @@
 				<h3 class="dialog-subtitle">
 					Milks
 				</h3>
-				<button type="button" class="dialog-button dialog-button-selected" data-button-group="milk" onclick="diagButtonClick(this)">
+				<button type="button" class="dialog-button dialog-button-selected" data-button-default="true" data-button-group="milk" onclick="diagButtonClick(this)">
 					<h2 class="button-short-name">
 						R
 					</h2>
@@ -138,14 +138,57 @@
 		<div class="root-layout">
 			<div id="orders" class="flex-parent">
 				<h2 class="order-heading">Orders</h2>
-				<p id="order-sub" class="order-sub">Friday Lunch Shift TODO FIX</p>
+				<p id="order-sub" class="order-sub"></p>
 				<div class="flex-scrollable">
 					<div id="order-list" class="order-list"></div>
 				</div>
-				<button onclick="location.href='/'" type="button">End shift</button>
+
+				<div id="bar-hstack" class="bar-hstack">
+					<button id="preorders-button" class="bar-button" type="button">View Pre-Orders</button>
+
+					<button id="endshift-button" class="bar-button" type="button">End Shift</button>
+
+
+
+					<button id="cancel-endshift-button" class="bar-button" style="display: none;">Cancel</button> 
+
+					<button id="confirm-endshift-button" class="bar-button" style="display: none;">Confirm End Shift</button> 
+
+
+				</div>
+
+
+			</div> 
+
+
+			<div id="rootvstack" class="rootvstack">
+				<div id="hstack1" class="hstack1">
+					<div id="hstack-item0" class="hstack-item"></div>
+					<div id="hstack-item1" class="hstack-item"></div>
+				</div>
+				
+
+				<div id="hstack2" class="hstack2">
+					<div id="vstack" class="vstack">
+						<div id="hstack-item2" class="hstack-item"></div>
+						<div id="hstack-item3" class="hstack-item"></div>
+						<div id="hstack-item4" class="hstack-item"></div>
+					</div>
+
+					<div id="vstack" class="vstack">
+						<div id="hstack-item5" class="hstack-item"></div>
+						<div id="hstack-item6" class="hstack-item"></div>
+						<div id="hstack-item7" class="hstack-item"></div>
+					</div>
+
+					<div id="vstack" class="vstack">
+						<div id="hstack-item8" class="hstack-item"></div>
+						<div id="hstack-item9" class="hstack-item"></div>
+					</div>
+
+				</div>
 			</div>
 
-			<div id="grid-container" class="grid-container"></div>
 		</div>
 
 
