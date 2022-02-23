@@ -159,7 +159,8 @@ function doneclicked() {
 	object = {
 		index: displayedDialogIdx,
 		large: true,
-		count: 1 // TODO also do post
+		count: 1, // TODO also do post
+		date: Date.now()
 	}
 	var choice
 	[].slice.call(document.getElementById("drink-options-content")
@@ -189,7 +190,10 @@ function doneclicked() {
 	console.log(object);
 	fetch(API_URL + "transactions", {
 		method: "POST",
-		headers: {'Content-Type': 'application/json'},
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': 'Basic Q8xTy1zafJmh4R/p9bh11eOcUad/gjoRIeeU214lgtw='
+		},
 		body: JSON.stringify(object)
 	});
 	orderedCoffees.push(object);
@@ -316,18 +320,7 @@ function displayData(data) {
 			}
 		})
 	}
-	
-	
-	data.forEach(function(element, index) { 
 
-		tab += `
-			<div class="grid-item">
-				<button id="button${index}" type="button" onclick="coffeeClicked(${index})">${element.short_name}</button>
-			</div>
-			`;	 
-	})
-
-	setFunc = function() { document.getElementById("grid-container").innerHTML = tab; }
 	if ( document.readyState == 'complete' ) {
 		setFunc();
 		addClickListener();
@@ -362,7 +355,8 @@ function endShift() {
 		document.getElementById("confirm-endshift-button").style.display = "block";
 		document.getElementById("cancel-endshift-button").style.display = "block";
 
-
+	});
+}
 
 
 function diagButtonClick(elem) {
@@ -395,46 +389,10 @@ window.addEventListener("load", () => {
 	getCurrentDate();
 	modal = document.getElementById("drink-options-modal");
 	document.getElementById("order-sub").innerHTML = getOrderSubText();
-	
+})
 	
 
 var displayedDialogIdx;
-
-
-function doneclicked() {
-	modal.style.display = 'none'
-	object = {
-		index: displayedDialogIdx,
-		large: true,
-		count: 1, // TODO also do post
-		date: Date.now()
-	}
-	var choice
-	[].slice.call(document.getElementById("drink-options-content")
-		.querySelectorAll("[data-button-group='milk']"))
-		.every( (el, idx) => {
-			if (el.classList.contains("dialog-button-selected")) {
-				choice = idx
-				return false
-			}
-			return true
-		}
-	)
-	object["milk"] = choice
-	console.log(object)
-	fetch(API_URL + "transactions", {
-		method: "POST",
-		headers: {
-			'Content-Type': 'application/json',
-			'Authorization': 'Basic Q8xTy1zafJmh4R/p9bh11eOcUad/gjoRIeeU214lgtw='
-		},
-		body: JSON.stringify(object)
-	})
-	orderedCoffees.push(object);
-	updCurTransList()
-}
-
-
 
 
 
