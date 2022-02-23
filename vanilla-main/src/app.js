@@ -29,23 +29,28 @@ function getOrderSubText() {
 	var hour = currentDate.getHours();
 	var day = currentDate.getDay();
 	
+	/* ****************** */
+
+	/*
 	day = 4;
 	hour = 8;
+	*/
 	
 	var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][day]
 	
 	
 	function getShiftName(hour) {
 		if (hour >= 7 && hour <= 9) {
-			return "Morning Shift";
+			return ", Morning Shift";
 		} else if (hour >= 12 && hour <= 14) {
-			return "Lunch Shift";
+			return ", Lunch Shift";
 		} else {
-			return "";
+			return ", (No Shift Selected)";
 		}
 	}
+
 	
-	return weekday + ", " + getShiftName(hour);
+	return weekday + getShiftName(hour);
 }
 
 function postCoffee(coffee) {
@@ -183,13 +188,26 @@ function doneclicked() {
 			return true
 		}
 	)
-	object["milk"] = choice
-	console.log(object)
+	object["milk"] = choice;
+
+
+	[].slice.call(document.getElementById("drink-options-content")
+		.querySelectorAll("[data-button-group].dialog-button-selected")).forEach(function(element) {
+			element.classList.remove("dialog-button-selected")
+		});
+
+	[].slice.call(document.getElementById("drink-options-content")
+		.querySelectorAll("[data-button-default='true'")).forEach(function(element) {
+			element.classList.add("dialog-button-selected")
+		});
+
+
+	console.log(object);
 	fetch(API_URL + "transactions", {
 		method: "POST",
 		headers: {'Content-Type': 'application/json'},
 		body: JSON.stringify(object)
-	})
+	});
 	orderedCoffees.push(object);
 	updCurTransList()
 }
@@ -199,7 +217,7 @@ function doneclicked() {
 function coffeeClicked(idx) {
 	item = menu[idx]
 	if (item.is_drink) {
-		modal.style.display = "block"
+		modal.style.display = "flex"
 		displayedDialogIdx = idx
     } else {
 		orderedCoffees.push({index: idx});

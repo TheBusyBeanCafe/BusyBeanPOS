@@ -250,9 +250,11 @@ body {
 
 .modal-bg {
 	display: none;
+	justify-content: center;
+	align-items: center;
+
 	position: fixed;
 	z-index: 1;
-	padding-top: 100px;
 	left: 0;
 	top: 0;
 	width: 100%;
@@ -263,10 +265,11 @@ body {
 
 .modal-content {
 	background-color: #fefefe;
-	margin: auto;
-	padding: 20px;
-	border: 1px solid #888;
-	width: 80%;
+	
+	padding: 2vw;
+
+	width: 85vw;
+	height: 80vh;
 }
 
 
