@@ -21,7 +21,14 @@ function getCurrentName() {
 
 
 async function asyncFetch(url) {
-	const response = await fetch(url);
+	const response = await fetch(
+		url, {
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Basic Q8xTy1zafJmh4R/p9bh11eOcUad/gjoRIeeU214lgtw='
+			}
+		},
+	);
 	json = await response.json()
 
 	return json
@@ -44,7 +51,14 @@ var menu
 var drink_addons
 
 async function getMenuItems(url) {
-	const response = await fetch(url);
+	const response = await fetch(
+		url, {
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Basic Q8xTy1zafJmh4R/p9bh11eOcUad/gjoRIeeU214lgtw='
+			}
+		},
+	);
 	json = await response.json();
 	menu = json["menu"]
 	drink_addons = json["drink_addons"]
@@ -124,7 +138,8 @@ function doneclicked() {
 	object = {
 		index: displayedDialogIdx,
 		large: true,
-		count: 1 // TODO also do post
+		count: 1, // TODO also do post
+		date: Date.now()
 	}
 	var choice
 	[].slice.call(document.getElementById("drink-options-content")
@@ -141,8 +156,11 @@ function doneclicked() {
 	console.log(object)
 	fetch(API_URL + "transactions", {
 		method: "POST",
-		headers: {'Content-Type': 'application/json'},
-		body: JSON.stringify([object])
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': 'Basic Q8xTy1zafJmh4R/p9bh11eOcUad/gjoRIeeU214lgtw='
+		},
+		body: JSON.stringify(object)
 	})
 	orderedCoffees.push(object);
 	updCurTransList()
@@ -157,12 +175,19 @@ function coffeeClicked(idx) {
 	if (item.is_drink) {
 		modal.style.display = "block"
 		displayedDialogIdx = idx
-=======
-function addCoffee(idx) {
-	item = menu[idx]
-	if (item.is_drink) {
-		modal.style.display = "block"
 	} else {
+		fetch(API_URL + "transactions", {
+			method: "POST",
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Basic Q8xTy1zafJmh4R/p9bh11eOcUad/gjoRIeeU214lgtw='
+			},
+			body: JSON.stringify({
+				index: 6,
+				count: 1, // TODO
+				date: Date.now()
+				})
+		})
 		orderedCoffees.push({index: idx});
 		updCurTransList()
 	}
