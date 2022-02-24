@@ -1,5 +1,21 @@
 const API_URL = "http://127.0.0.1:5000/";
 
+demo = {
+	"to": "Staffroom",
+	"name": "ms teacher",
+	"items": [
+		{
+			"id": 1,
+			"size": 1,
+			"count": 3
+		},
+		{
+			"id": 2,
+			"size": 0,
+			"count": 6
+		}
+	]
+}
 
 var menu, drink_addons, modal;
 
@@ -159,8 +175,7 @@ function doneclicked() {
 	object = {
 		index: displayedDialogIdx,
 		large: true,
-		count: 1, // TODO also do post
-		date: Date.now()
+		count: 1 // TODO also do post
 	}
 	var choice
 	[].slice.call(document.getElementById("drink-options-content")
@@ -175,11 +190,14 @@ function doneclicked() {
 	)
 	object["milk"] = choice;
 
+	object["large"] = document.getElementById("drink-options-content").querySelectorAll("[data-button-group='size']")[1].classList.contains("dialog-button-selected");
+
 
 	[].slice.call(document.getElementById("drink-options-content")
 		.querySelectorAll("[data-button-group].dialog-button-selected")).forEach(function(element) {
 			element.classList.remove("dialog-button-selected")
 		});
+
 
 	[].slice.call(document.getElementById("drink-options-content")
 		.querySelectorAll("[data-button-default='true'")).forEach(function(element) {
@@ -188,14 +206,14 @@ function doneclicked() {
 
 
 	console.log(object);
+
 	fetch(API_URL + "transactions", {
 		method: "POST",
-		headers: {
-			'Content-Type': 'application/json',
-			'Authorization': 'Basic Q8xTy1zafJmh4R/p9bh11eOcUad/gjoRIeeU214lgtw='
-		},
+		headers: {'Content-Type': 'application/json'},
 		body: JSON.stringify(object)
 	});
+
+
 	orderedCoffees.push(object);
 	updCurTransList()
 }
@@ -207,11 +225,14 @@ function coffeeClicked(idx) {
 	if (item.is_drink) {
 		modal.style.display = "flex"
 		displayedDialogIdx = idx
+
+		document.getElementById("dialog-drink-title").innerHTML = getCurrentOrderItem(idx);
     } else {
 		orderedCoffees.push({index: idx});
 		updCurTransList()
 	}
 }
+
 
 function getCurrentDate() {
 	var currentDate = new Date();
@@ -232,14 +253,7 @@ function getCurrentName() {
 }
 
 async function asyncFetch(url) {
-	const response = await fetch(
-		url, {
-			headers: {
-				'Content-Type': 'application/json',
-				'Authorization': 'Basic Q8xTy1zafJmh4R/p9bh11eOcUad/gjoRIeeU214lgtw='
-			}
-		},
-	);
+	const response = await fetch(url);
 	json = await response.json()
 	
 	return json
@@ -252,18 +266,8 @@ function getIntroText() {
 	getCurrentName();
 }
 
-window.addEventListener("load", getCurrentDate);
-
-
 async function getMenuItems(url) {
-	const response = await fetch(
-		url, {
-			headers: {
-				'Content-Type': 'application/json',
-				'Authorization': 'Basic Q8xTy1zafJmh4R/p9bh11eOcUad/gjoRIeeU214lgtw='
-			}
-		},
-	);
+	const response = await fetch(url);
 	json = await response.json();
 	menu = json["menu"]
 	drink_addons = json["drink_addons"]
@@ -320,7 +324,8 @@ function displayData(data) {
 			}
 		})
 	}
-
+	
+	
 	if ( document.readyState == 'complete' ) {
 		setFunc();
 		addClickListener();
@@ -332,18 +337,67 @@ function displayData(data) {
 	}
 }
 
+
+function getCurrentOrderItem(index) {
+	return menu[index].long_name;
+}
+
 function updCurTransList() {
 	var display = '';
 	//var total = 0;
 	
+	function getMilkType(ix) {
+		if (ix==0) {
+			return "";
+		} else {
+			return "→ Milk: " + ["Full", "Lite", "Almond", "Oat", "Trim", "Soy"][ix];
+		}
+	}
+
+
 	orderedCoffees.forEach(function(element) { 
-		display += `
-		<p id="order${element.index}" class="order${element.index}" style="background: white; border-radius: 0.4vw; padding: 0.4vw; margin-top: 0.8vw; margin-bottom: 0.8vw;"><span style="font-weight: 900; margin-left: 0.5vw; margin-right: 1.4vw;">${(element.large) ? "L" : "R"}</span>${menu[element.index].long_name}</p>
+		tempBlock = `
+		<p onclick="completeOrder(order${element.index})" id="order${element.index}" class="order-block" style="background: white; border-radius: 0.4vw; padding: 0.4vw; margin-top: 0.8vw; margin-bottom: 0.8vw;"><span style="font-weight: 900; margin-left: 0.5vw; margin-right: 1.4vw;">${(element.large) ? "L" : "R"}</span>${menu[element.index].long_name}
 		`;
+		
+		
+		if (getMilkType(element.milk)!=0) {
+			tempBlock += `<br><span style="font-weight: 500; margin-left: 3.2vw; font-size: 1.35vw; margin-top: 0vw; margin-bottom: 0.5vw;">${getMilkType(element.milk)}</span>`
+		} else {
+			tempBlock += `</p>`
+		}
+
+
+
+		display += tempBlock;
+		
 	});
+
 	
 	document.getElementById("order-list").innerHTML = display;
+
+/*
+		let elementId = "order" + element.index;
+
+
+		let tempOrderBlock = document.getElementById(elementId);
+		tempOrderBlock.addEventListener("click", () => {
+			tempOrderBlock.style.background="green";
+		})
+*/
 }
+
+function completeOrder(el) {
+	
+	console.log();
+
+	if (el.style.background.split(" ")[0] == "white") {
+		el.style.background="#A5D6A7";
+	} else {
+		el.style.background="white";
+	}
+}
+
 
 function endShift() {
 	document.getElementById("endshift-button").addEventListener("click", () => {
@@ -355,17 +409,8 @@ function endShift() {
 		document.getElementById("confirm-endshift-button").style.display = "block";
 		document.getElementById("cancel-endshift-button").style.display = "block";
 
-	});
-}
-
-
-function diagButtonClick(elem) {
-	var type = elem.getAttribute("data-button-group");
-	[].slice.call(document.getElementById("drink-options-content")
-		.querySelectorAll("[data-button-group='" + type + "'].dialog-button-selected")).forEach(function(element) {
-			element.classList.remove("dialog-button-selected")
-		})
-	elem.classList.add("dialog-button-selected")
+		console.log("pressed")
+	})
 }
 
 function confirmCancelEnd() {
@@ -388,45 +433,31 @@ getMenuItems(API_URL + "menu");
 window.addEventListener("load", () => {
 	getCurrentDate();
 	modal = document.getElementById("drink-options-modal");
-	document.getElementById("order-sub").innerHTML = getOrderSubText();
-})
 	
 
-var displayedDialogIdx;
 
+	document.getElementById("order-sub").innerHTML = getOrderSubText();
+	
+	
 
-
-function coffeeClicked(idx) {
-	item = menu[idx]
-	if (item.is_drink) {
-		modal.style.display = "block"
-		displayedDialogIdx = idx
-	} else {
-		fetch(API_URL + "transactions", {
-			method: "POST",
-			headers: {
-				'Content-Type': 'application/json',
-				'Authorization': 'Basic Q8xTy1zafJmh4R/p9bh11eOcUad/gjoRIeeU214lgtw='
-			},
-			body: JSON.stringify({
-				index: 6,
-				count: 1, // TODO
-				date: Date.now()
-				})
-		})
-		orderedCoffees.push({index: idx});
-		updCurTransList()
 	let buttons = document.getElementsByClassName("bar-button")
 	for (button of buttons) {
 		button.style.cursor = "pointer";
-	}
 	}
 
 	endShift();
 
 	confirmCancelEnd();
+
+	// for (button of document.getElementsByClassName("dialog-button")) {
+	// 	console.log(button);
+
+	// 	button.classList.remove("hover-effect");
+	// }
 	
-};
+	
+
+});
 
 window.onclick = function(event) {
 	if (event.target == modal) {
