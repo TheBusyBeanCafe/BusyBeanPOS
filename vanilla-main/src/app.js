@@ -185,6 +185,7 @@ function doneclicked() {
 			element.classList.remove("dialog-button-selected")
 		});
 
+
 	[].slice.call(document.getElementById("drink-options-content")
 		.querySelectorAll("[data-button-default='true'")).forEach(function(element) {
 			element.classList.add("dialog-button-selected")
@@ -192,14 +193,14 @@ function doneclicked() {
 
 
 	console.log(object);
+
 	fetch(API_URL + "transactions", {
 		method: "POST",
-		headers: {
-			'Content-Type': 'application/json',
-			'Authorization': 'Basic Q8xTy1zafJmh4R/p9bh11eOcUad/gjoRIeeU214lgtw='
-		},
+		headers: {'Content-Type': 'application/json'},
 		body: JSON.stringify(object)
 	});
+
+
 	orderedCoffees.push(object);
 	updCurTransList()
 }
