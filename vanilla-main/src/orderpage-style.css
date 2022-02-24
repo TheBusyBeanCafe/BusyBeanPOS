@@ -264,18 +264,23 @@ body {
 }
 
 .modal-content {
-	background-color: #fefefe;
+	background-color: #EBEBEB;
+	border-radius: 0.5vw;
 	
-	padding: 2vw;
+	display: flex;
+	flex-direction: column;
+	
+	padding: 1.3vw;
+	padding-top: 4vh;
 
-	width: 85vw;
-	height: 80vh;
+	width: 75vw;
+	height: 70vh;
 }
 
 
 .dialog-title {
-	font-family: visbyround-bold;
-	font-size: 2em;
+	font-family: visbyround-medium;
+	font-size: 4.4vw;
 	vertical-align: bottom;
 }
 
@@ -283,49 +288,327 @@ body {
 .dialog-drink-title {
 	font-family: "Roboto Mono";
 	font-weight: 600;
-	font-size: 1.5em;
+	font-size: 3vw;
 	vertical-align: bottom;
 	text-align: right;
 }
 
 
-#temp {
-	padding: 16px;
+
+
+
+/* LAYOUT */
+.modal-vstack {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+
+	height: 100%;
+
+
+	padding: 0px;
+	margin: 0px;
 }
+
+
+.modal-hstack {
+	padding: 0px;
+	margin: 0px;
+
+
+	height: 100%;
+
+	
+
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	
+	gap: 2vh;
+}
+
+#modal-hstack-big {
+	flex: 1;
+	flex-grow: 3;
+}
+
+
+#modal-hstack-small1 {
+	flex: 1;
+	flex-grow: 2;
+
+	gap: 20%;
+
+
+}
+
+#modal-hstack-small2 {
+	flex: 1;
+	flex-grow: 2;
+
+	gap: 36%;
+
+}
+
+
+
+#modal-hstack-small2-left {
+	flex: 1;
+	flex-grow: 1;
+}
+
+
+#modal-hstack-small2-right {
+	flex: 1;
+	flex-grow: 1;
+}
+
+
+
+
+
+#modal-hstack-small1-left {
+	flex: 1;
+	flex-grow: 5;
+}
+
+
+#modal-hstack-small1-right {
+	flex: 1;
+	flex-grow: 1;
+}
+
+
+
+
+.subtitle-hstack {
+	display: flex;
+	flex-direction: row;
+
+	justify-content: space-between;
+
+	width: 100%;
+}
+
+
+.divider {
+	width: 0.5vw;
+	height: 80%;
+
+	border-radius: 0.25vw;
+
+	background-color: white;
+}
+
+
+
+
+.modal-hstack-item {
+	padding: 0px;
+	margin: 0px;
+
+	width: 100%;
+
+	display: flex;
+	flex-direction: column;
+
+	justify-content: center;
+	align-items: center;
+
+	gap: -0.5vh;
+}
+
+
+
+.modal-hstack-item {
+	padding: 0px;
+	margin: 0px;
+
+	width: 100%;
+
+	display: flex;
+	flex-direction: column;
+
+	justify-content: center;
+	align-items: center;
+
+	gap: -0.5vh;
+}
+
+
+
+
+
+
+#mhst-1-big {
+	flex: 1;
+	flex-grow: 5;
+}
+
+#mhst-1-small {
+	flex: 1;
+	flex-grow: 3;
+}
+
+#mhst-1-divider {
+	flex: 1;
+	flex-grow: 0.1;
+}
+
+
+#mhst-2-vstack {
+	display: flex;
+	flex-direction: column;
+
+	margin: 0px;
+	padding: 0px;
+	gap: 2vh;
+
+	width: 100%;
+	height: 100%;
+
+}
+
+
+#mhst-2-big {
+	margin: 0px;
+	padding: 0px;
+
+	width: 100%;
+	height: 100%;
+}
+
+
+
+#half-size {
+	flex: 1;
+	flex-grow: 1;
+
+	margin: 0px;
+	padding: 0px;
+
+	width: 100%;
+	height: 100%;
+}
+
+
+
+#mhst-3-big {
+	width: 100%;
+	height: 100%;
+}
+
+
+
+
+
+
+
+
 
 
 .dialog-button {
+	background-color: white;
 	font-family: "Roboto Mono";
-	border-radius: 4px;
+	border-radius: 1vh;
 	border: none;
-	transition: transform 0.05s;
+	transition: transform 0.1s;
+
+	width: 100%;
+	height: 100%;
 }
 
+/* .dialog-button:hover {
+	background: rgba(255, 236, 179, 0.2);
+} */
+
 .dialog-button:active {
-	transform: scale(0.9);
+	transform: scale(0.97);
 }
 
 .dialog-button-selected {
 	background-color: #ffecb3;
 }
 
+
+
+
 .button-short-name {
 	font-weight: 700;
-	font-size: 3em;
-	margin: 4px;
+	font-size: 8vh;
+
+	margin: 0px;
+	padding: 0px;
 }
+
+
 
 .button-long-name {
-	font-size: 1.2em;
+	font-size: 3vh;
+	font-weight: 600;
+
+	
+
 	margin: 0px;
+	padding: 0px;
+
+	margin-top: -1.5vh;
 }
 
-.button-short-name + .button-long-name {
-	margin-top: -8px;
+
+
+
+
+.button-short-name-s {
+	font-weight: 700;
+	font-size: 7.4vh;
+
+	margin: 0px;
+	padding: 0px;
 }
+
+
+
+.button-long-name-s {
+	font-size: 2.6vh;
+	font-weight: 600;
+
+	
+
+	margin: 0px;
+	padding: 0px;
+
+	margin-top: -1.5vh;
+}
+
+
+
+
+.button-long-name-only {
+	font-size: 3vh;
+	font-weight: 600;
+
+	
+
+	margin: 0px;
+	padding: 0px;
+}
+
+
+
+
+
+
 
 .dialog-subtitle {
+	font-size: 3vh;
 	font-family: visbyround-regular;
+
+	margin-bottom: 0px;
+	padding-bottom: 0px;
 }
 
-
+#done {
+	background: #A5D6A7;
+}
