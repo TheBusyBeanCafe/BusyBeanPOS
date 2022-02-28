@@ -122,7 +122,14 @@ function doneclicked() {
 			body: JSON.stringify(dialogShownObj)
 		});
 	} else {
-
+		fetch(API_URL + "transaction/" + dialogShownObj["id"], {
+			method: "PUT",
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Basic Q8xTy1zafJmh4R/p9bh11eOcUad/gjoRIeeU214lgtw='
+			},
+			body: JSON.stringify(dialogShownObj)
+		});
 	}
 
 	updCurTransList()
