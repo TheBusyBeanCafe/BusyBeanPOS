@@ -312,6 +312,15 @@ function completeOrder(idx) {
 	modal.style.display = "flex"
 
 	dialogShownObj = orderedCoffees[idx];
+
+	[].slice.call(document.getElementById("drink-options-content")
+		.querySelectorAll("[data-button-group].dialog-button-selected")).forEach(function(element) {
+			element.classList.remove("dialog-button-selected")
+		});
+
+	document.getElementById("drink-options-content").querySelectorAll("[data-button-group='milk']")[dialogShownObj.milk].classList.add("dialog-button-selected")
+	document.getElementById("drink-options-content").querySelectorAll("[data-button-group='size']")[ + dialogShownObj.large].classList.add("dialog-button-selected");
+
 	
 	/*
 	if (el.is_done) {
