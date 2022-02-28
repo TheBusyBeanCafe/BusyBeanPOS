@@ -1,4 +1,9 @@
+
+
 const API_URL = "http://127.0.0.1:5000/";
+
+
+
 
 
 var menu, drink_addons, modal;
@@ -160,9 +165,12 @@ var displayedDialogIdx;
 function doneclicked() {
 	modal.style.display = 'none'
 	object = {
+		id: uuidv4(),
 		index: displayedDialogIdx,
 		count: 1, // TODO also do post
-		date: Date.now()
+		date: Date.now(),
+		is_done: false
+		
 	}
 	var choice
 	[].slice.call(document.getElementById("drink-options-content")
@@ -196,7 +204,10 @@ function doneclicked() {
 
 	fetch(API_URL + "transactions", {
 		method: "POST",
-		headers: {'Content-Type': 'application/json'},
+		headers: {
+			'Content-Type': 'application/json',
+			'Authorization': 'Basic Q8xTy1zafJmh4R/p9bh11eOcUad/gjoRIeeU214lgtw='
+		},
 		body: JSON.stringify(object)
 	});
 
@@ -257,6 +268,7 @@ async function getMenuItems(url) {
 	const response = await fetch(url,
 		{
 			headers: {
+				'Content-Type': 'application/json',
 				'Authorization': 'Basic Q8xTy1zafJmh4R/p9bh11eOcUad/gjoRIeeU214lgtw='
 			}
 		});
@@ -383,10 +395,13 @@ function completeOrder(el) {
 	
 	console.log();
 
-	if (el.style.background.split(" ")[0] == "white") {
-		el.style.background="#A5D6A7";
-	} else {
+	if (el.is_done) {
 		el.style.background="white";
+	} else {
+		if (el.style.background.split(" ")[0] == "white") {
+			el.is_done = true;
+			el.style.background="#A5D6A7";
+		}
 	}
 }
 
